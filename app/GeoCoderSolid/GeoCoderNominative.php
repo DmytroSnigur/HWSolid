@@ -4,9 +4,8 @@ use GuzzleHttp\ClientInterface;
 
 class GeoCoderNominative implements iGeoCoderNominative
 {
-    const URL = 'https://nominatim.openstreetmap.org/search.php?format=jsonv2&q=';
+    private string $url = 'https://nominatim.openstreetmap.org/search.php?format=jsonv2&q=';
     private string $excludedPlaceIds;
-    private array $places;
     private string $search;
     private ClientInterface $guzzleShmuzzle;
     public function __construct(string $search, ClientInterface $guzzleShmuzzle)
@@ -21,7 +20,7 @@ class GeoCoderNominative implements iGeoCoderNominative
     }
     public function execute(): array
     {
-    $response = $this->guzzleShmuzzle->request('GET', self::URL . urlencode($this->search) . $this->excludedPlaceIds);
+    $response = $this->guzzleShmuzzle->request('GET', $this->url . urlencode($this->search) . $this->excludedPlaceIds);
     return json_decode($response->getBody()->getContents());
 }
 }
