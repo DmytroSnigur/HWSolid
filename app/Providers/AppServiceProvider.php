@@ -20,7 +20,7 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(iDistanceCalculator::class, DistanceCalculator::class);
-        $con = $this->app->when(DistanceService::class);
+        $con = $this->app->when(DistanceCalculator::class);
         $con->needs('$lat')->give(46.4774700);
         $con->needs('$lon')->give(30.7326200);
 
