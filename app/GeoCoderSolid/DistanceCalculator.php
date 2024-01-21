@@ -4,7 +4,7 @@ class DistanceCalculator implements iDistanceCalculator
 {
     private $lat;
     private $lon;
-    public function __construct($lat = 46.4774700, $lon = 30.7326200) {
+    public function __construct($lat, $lon) {
         $this->lat = $lat;
         $this->lon = $lon;
     }
