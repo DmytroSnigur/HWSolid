@@ -2,7 +2,7 @@
 namespace App\GeoCoderSolid;
 class ResultProcessor implements iResultProcessor
 {
-    const PROPERTIES = ['place_id', 'name', 'display_name', 'distance'];
+    private array $properties = ['place_id', 'name', 'display_name', 'distance'];
     private iGeoCoderNominative $guzzleShmuzzle;
     private $places;
     private iDistanceCalculator $distance;
@@ -32,7 +32,7 @@ class ResultProcessor implements iResultProcessor
     {
         foreach ($this->places as $key => $place) {
             foreach ($place as $prop => $val) {
-                if (!in_array($prop, self::PROPERTIES)) {
+                if (!in_array($prop, $this->properties)) {
                     unset($place->$prop);
                 }
             }
